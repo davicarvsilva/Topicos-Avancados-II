@@ -78,5 +78,21 @@ class Livraria:
         
         return descontos
 
+    # calcula melhor valor com desconto a partir de uma lista de itens
+    def calcular_melhor_desconto(self, itens):
+        menor_valor = 0
+    
+        for item in itens:
+            # se valor ainda for zero, seta o menor valor como o do primeiro item
+            if menor_valor == 0:
+                menor_valor = item["preco_unitario"] * item['quantidade'] - self.calculcar_desconto_item(item)
+
+            else:
+                valor_com_desconto = item["preco_unitario"] * item['quantidade'] - self.calculcar_desconto_item(item)
+                if valor_com_desconto < menor_valor:
+                    menor_valor = valor_com_desconto
+
+        return menor_valor
+
     def get_carrinho(self):
         return self.carrinho

@@ -94,5 +94,40 @@ class TestLivraria(unittest.TestCase):
         self.assertEqual(desconto_item1, descontos[item1['id']])
         self.assertEqual(desconto_item2, descontos[item2['id']])
 
+    def test_calcular_melhor_desconto(self):
+        livraria = Livraria()
+        item1 = livraria.get_item_by_id(1)
+        item2 = livraria.get_item_by_id(2)
+        item3 = livraria.get_item_by_id(3)
+
+        item1['quantidade'] = 2
+        item2['quantidade'] = 5
+        item3['quantidade'] = 3
+
+        itens = [item1, item2, item3]
+
+        livraria.adicionar_item_carrinho(item1)
+        livraria.adicionar_item_carrinho(item2)
+        livraria.adicionar_item_carrinho(item3)
+
+        valores_itens_com_desconto = []
+
+        # pega o subtotal (preco + desconto) dos itens setados anteriormente
+        for item in itens:
+            valor = {}
+            valor['id'] = item['id']
+            valor['valor'] = (item['quantidade'] * item['preco_unitario'] - 
+                livraria.calculcar_desconto_item(item))
+
+            valores_itens_com_desconto.append(valor)
+
+        # pega o melhor desconto da lista de itens setada anteriormente
+        melhor_valor_com_desconto = livraria.calcular_melhor_desconto(itens)
+
+        # verifica se o menor desconto retornado da função calcular_melhor_desconto
+        # é igual ao menor desconto da lista valores_itens_com_desconto (através da lamba function)
+        self.assertEqual(min(valores_itens_com_desconto, key=lambda x: x['valor'])['valor'],
+            melhor_valor_com_desconto)
+
 if __name__ == '__main__':
     unittest.main()
