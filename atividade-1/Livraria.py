@@ -23,36 +23,22 @@ class Livraria:
             {"id": 6, "titulo": "Harry Potter e o Enigma do Príncipe", "preco_unitario": 22.89},
             {"id": 7, "titulo": "Harry Potter e as Relíquias da Morte", "preco_unitario": 27.99},
         ]
-
         self.carrinho = []
 
     def get_item_by_id(self, id):
-        item = next((item for item in self.items if item["id"] == id), None)
-        
-        if item == None:
-            raise Exception("Livro não encontrado. ID incorreto")
-            return {}
-        else:
-            return item
+        return next((item for item in self.items if item["id"] == id), None)
 
-    # adiciona item ao carrinho
     def adicionar_item_carrinho(self, item):
         if item:
             self.carrinho.append(item)
-        
         else:
             raise TypeError("Item não informado corretamente")
 
-    # calcula valor total do carrinho, considerando descontos
     def calcular_valor_carrinho(self):
-        valor_total = 0
         descontos = self.calcular_descontos_carrinho()
-        for item in self.carrinho:
-            valor_total += item['preco_unitario'] * item['quantidade'] - descontos[item['id']]
-
+        valor_total = sum(item['preco_unitario'] * item['quantidade'] - descontos[item['id']] for item in self.carrinho)
         return valor_total
 
-    # calcula desconto de um único item do carrinho
     def calculcar_desconto_item(self, item):
         if self.get_item_by_id(item['id']):
             if item['quantidade'] == 2:
@@ -70,28 +56,15 @@ class Livraria:
         else:
             raise TypeError("Item não informado corretamente")
 
-    # calcula desconto de todos os itens do carrinho, e coloca os descontos separados em um dicionario
     def calcular_descontos_carrinho(self):
-        descontos = {}
-        for item in self.carrinho:
-            descontos[item['id']] = self.calculcar_desconto_item(item)
-        
-        return descontos
+        return {item['id']: self.calculcar_desconto_item(item) for item in self.carrinho}
 
-    # calcula melhor valor com desconto a partir de uma lista de itens
     def calcular_melhor_desconto(self, itens):
         menor_valor = 0
-    
         for item in itens:
-            # se valor ainda for zero, seta o menor valor como o do primeiro item
-            if menor_valor == 0:
-                menor_valor = item["preco_unitario"] * item['quantidade'] - self.calculcar_desconto_item(item)
-
-            else:
-                valor_com_desconto = item["preco_unitario"] * item['quantidade'] - self.calculcar_desconto_item(item)
-                if valor_com_desconto < menor_valor:
-                    menor_valor = valor_com_desconto
-
+            valor_com_desconto = item["preco_unitario"] * item['quantidade'] - self.calculcar_desconto_item(item)
+            if menor_valor == 0 or valor_com_desconto < menor_valor:
+                menor_valor = valor_com_desconto
         return menor_valor
 
     def get_carrinho(self):
