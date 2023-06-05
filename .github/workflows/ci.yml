@@ -16,4 +16,4 @@ jobs:
         python-version: "3.10"  # Specify the Python version you want to use
 
     - name: Run unit tests
-      run: python3 tests.py  # Run the unit tests
+      run: python3 atividade-1/tests.py  # Run the unit tests
