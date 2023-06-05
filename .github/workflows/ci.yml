@@ -1,20 +1,22 @@
-name: Project Tests
-on:
-  push:
-    - master
-  pull_request:
-    branches:
-    - master
+name: Unit Tests
+
+on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on:ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python "3.10"
-        uses: actions/setup-python@v2
-        with:
-          version: "3.10"
-      - name: Test
-        run: python3 tests.py
+  test:
+    runs-on: ubuntu-latest
 
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.10"  # Specify the Python version you want to use
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Install any required dependencies
+
+    - name: Run unit tests
+      run: python -m unittest discover -s tests  # Run the unit tests
