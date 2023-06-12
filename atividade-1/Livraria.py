@@ -67,5 +67,5 @@ class Livraria:
                 menor_valor = valor_com_desconto
         return menor_valor
 
-    def get_carrinho(self):
+    def get_carrinho(self):nem
         return self.carrinho

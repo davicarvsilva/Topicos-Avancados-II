@@ -55,7 +55,7 @@ class TestLivraria(unittest.TestCase):
 
         valor_carrinho = self.livraria.calcular_valor_carrinho()
 
-        self.assertEqual(valor_carrinho, (item1['preco_unitario'] * item1['quantidade']) + 
+        self.assertEqual(valor_carrinho+1, (item1['preco_unitario'] * item1['quantidade']) + 
             (item2['preco_unitario'] * item2['quantidade']) - desconto_total)
 
     def test_calcular_descontos_carrinho(self):
