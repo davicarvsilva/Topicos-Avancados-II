@@ -6,8 +6,75 @@ Preconditions: Nenhuma
 Steps:
 1. Usuário informa senha e login
 2. O sistema verifica se o login está disponível
-3. Usuário é salvo nos repositórios
+3. Usuário é salvo 
+
+Postconditions: Novo usuário é armazenado
 
 Alternative Scenario A - Login já existe
-2a. Caso o login informado pelo usuário não esteja disponível, retornar a mensagem: "login indisponível".
+2. Caso o login informado pelo usuário não esteja disponível, retornar a mensagem: "login indisponível".
+
+Use Case ID: UC-002
+Name: Adição de chopeira
+Description: Este caso de uso descreve a adição de uma nova chopeira 
+Actors: Usuário
+Preconditions: Nenhuma
+Steps:
+1. Usuário informa os dados da chopeira
+2. O sistema salva a nova chopeira
+
+Postconditions: Nova chopeira é armazenada
+
+Use Case ID: UC-003
+Name: Adição de barril
+Description: Este caso de uso descreve a adição de um novo barril
+Actors: Usuário
+Preconditions: Nenhuma
+Steps:
+1. Usuário informa os dados do barril
+2. O sistema salva o novo barril
+
+Postconditions: Novo barril é armazenado
+
+Use Case ID: UC-004
+Name: Adição de cilindro
+Description: Este caso de uso descreve a adição de um novo cilindro
+Actors: Usuário
+Preconditions: Nenhuma
+Steps:
+1. Usuário informa os dados do cilindro
+2. O sistema salva o novo cilindro
+
+Postconditions: Novo cilindro é armazenado
+
+Use Case ID: UC-005
+Name: Adição de manômetro
+Description: Este caso de uso descreve a adição de um novo manômetro
+Actors: Usuário
+Preconditions: Nenhuma
+Steps:
+1. Usuário informa os dados do manômetro
+2. O sistema salva o novo manômetro
+
+Postconditions: Novo manômetro é armazenado
+
+Use Case ID: UC-006
+Name: Criação de ordem de serviço
+Description: Este caso de uso descreve a criação de uma ordem de serviço. Cada ordem de serviço precisa contem ao menos um barril, e pode ou não conter o material para extração (chopeira, cilindro, manometro)
+Actors: Usuário
+Preconditions: Nenhuma
+Steps:
+1. Usuário informa tamanho do barril
+2. Sistema verifica se há barris disponíveis
+3. Usuário informa se haverá necessidade de material para extração
+4. Sistema verifica disponibilidade de cilindro, chopeira e manômetro
+5. Ordem de serviço é criada
+
+Alternative Scenario A - Não há barris disponíveis
+2. Sistema avisa que não há barril daquele tamanho disponível
+
+Alternative Scenario B - Não há material para extração disponível
+2. Sistema avisa que não há material para extração disponível
+
+Postconditions: Nova ordem de serviço é armazenada. Chopeira, manômetro e cilindro tem seus status alterados para "ocupado". 
+
 
