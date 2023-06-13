@@ -57,23 +57,20 @@ Steps:
 
 Postconditions: Novo manômetro é armazenado
 
-Use Case ID: UC-006
-Name: Criação de ordem de serviço
+Use Case ID: UC-006<br>
+Name: Criação de ordem de serviço<br>
 Description: Este caso de uso descreve a criação de uma ordem de serviço. Cada ordem de serviço precisa contem ao menos um barril, e pode ou não conter o material para extração (chopeira, cilindro, manometro)
-Actors: Usuário
-Preconditions: Nenhuma
-Steps:
+<br>
+Actors: Usuário<br>
+Preconditions: Nenhuma<br>
+Steps:<br>
 1. Usuário informa tamanho do barril
-2. Sistema verifica se há barris disponíveis
-3. Usuário informa se haverá necessidade de material para extração
-4. Sistema verifica disponibilidade de cilindro, chopeira e manômetro
-5. Ordem de serviço é criada
+2. Usuário informa se haverá necessidade de material para extração
+3. Sistema verifica disponibilidade de cilindro, chopeira e manômetro
+4. Ordem de serviço é criada
 
-Alternative Scenario A - Não há barris disponíveis
-2. Sistema avisa que não há barril daquele tamanho disponível
-
-Alternative Scenario B - Não há material para extração disponível
-2. Sistema avisa que não há material para extração disponível
+Alternative Scenario A - Não há material para extração disponível
+3. Sistema não cria ordem de serviço caso não haja materiais disponíveis
 
 Postconditions: Nova ordem de serviço é armazenada. Chopeira, manômetro e cilindro tem seus status alterados para "ocupado". 
 
